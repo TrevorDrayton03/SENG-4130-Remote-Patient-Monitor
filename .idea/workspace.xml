@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59cd7e35-de4c-4d64-a52b-ae84253705fe" name="Changes" comment="" />
+    <list default="true" id="b31835ea-e9e9-44cf-8bb5-5f2580472c49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +10,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2GEcp1dxK842jZlz8YFsjpMiA0R" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GEcrnFb4l78AMe26NIh35xT5R9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -19,17 +23,33 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/university/fall2022/SENG 4130/project/RPM/SENG4130_REMOTE_PATIENT_MONITORING"
+    "last_opened_file_path": "C:/university/fall2022/SENG 4130/project/RPM/SENG4130_REMOTE_PATIENT_MONITORING/RemotePatientMonitoring",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="SENG4130_REMOTE_PATIENT_MONITORING" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="SENG4130_REMOTE_PATIENT_MONITORING" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="59cd7e35-de4c-4d64-a52b-ae84253705fe" name="Changes" comment="" />
-      <created>1665957363127</created>
+      <changelist id="b31835ea-e9e9-44cf-8bb5-5f2580472c49" name="Changes" comment="" />
+      <created>1665957386570</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1665957363127</updated>
+      <updated>1665957386570</updated>
     </task>
     <servers />
   </component>

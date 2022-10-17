@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6837f5-3506-4d89-9b9b-e0a3d0fbe948" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/loginOrCreate.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/loginOrCreate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginOrCreate.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrCreate.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginOrCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrCreate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,12 +85,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Design patterns lab4" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+  <component name="RunManager" selected="Application.LoginOrCreate">
+    <configuration name="LoginOrCreate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LoginOrCreate" />
+      <module name="SENG4130_REMOTE_PATIENT_MONITORING" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="SENG4130_REMOTE_PATIENT_MONITORING" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -101,7 +111,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.LoginOrCreate" />
       </list>
     </recent_temporary>
   </component>

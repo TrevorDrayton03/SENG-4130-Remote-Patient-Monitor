@@ -16,8 +16,8 @@ public class LoginOrCreate extends JFrame{
         haveAnAccountLoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // LoginFrame loginFrame = new LoginFrame();
-                //loginFrame.setVisible(true);
+               //new LoginFrame();
+                setVisible(false);
             }
         });
         createAccountButton.addActionListener(new ActionListener() {

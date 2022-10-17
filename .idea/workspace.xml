@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb6837f5-3506-4d89-9b9b-e0a3d0fbe948" name="Changes" comment="">
+    <list default="true" id="cb6837f5-3506-4d89-9b9b-e0a3d0fbe948" name="Changes" comment="Made working GUI">
+      <change afterPath="$PROJECT_DIR$/src/FrameTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loginOrCreate.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrCreate.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loginOrCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginOrCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrCreate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +123,14 @@
       <option name="presentableId" value="Default" />
       <updated>1666037131902</updated>
     </task>
+    <task id="LOCAL-00001" summary="Made working GUI">
+      <created>1666039903182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666039903182</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,5 +143,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Made working GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made working GUI" />
   </component>
 </project>

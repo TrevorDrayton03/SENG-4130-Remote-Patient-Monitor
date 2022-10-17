@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb6837f5-3506-4d89-9b9b-e0a3d0fbe948" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/com/company/LoginFrame.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/LoginFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/LoginFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

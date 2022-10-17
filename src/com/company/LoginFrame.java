@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrame {
 
     private JPanel LoginScreen;
     private JTextField usernameTextField;
@@ -19,7 +19,12 @@ public class LoginFrame extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-
-
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameTextField.getText();
+                String password = usernameTextField.getText();
+            }
+        });
     }
 }

@@ -48,10 +48,8 @@ public class User {
     }
 
     public boolean isCorrectPassword(String username, String password) {
-        for (String i : this.users.keySet()) {
-            if (i.equals(username)) {
-                return true;
-            }
+        if (users.get(username).equals(password)) {
+            return true;
         }
         return false;
     }

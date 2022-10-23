@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6837f5-3506-4d89-9b9b-e0a3d0fbe948" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/company/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/company/LoginFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/intellij/uiDesigner/core/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SENG4130_REMOTE_PATIENT_MONITORING/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/LoginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/LoginFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/LoginFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,14 +86,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "216",
-    "last_opened_file_path": "C:/university/fall2022/SENG 4130/project/RPM/SENG4130_REMOTE_PATIENT_MONITORING"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;216&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/university/fall2022/SENG 4130/project/RPM/SENG4130_REMOTE_PATIENT_MONITORING&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />

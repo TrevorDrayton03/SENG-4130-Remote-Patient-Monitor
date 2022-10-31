@@ -4,25 +4,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-public class LoginFrame extends FrameTemplate {
-
-    private JPanel LoginScreen;
-    private JTextField usernameTextField;
+public class FrontPage extends FrameTemplate{
     private JButton loginButton;
-    private JPasswordField passwordTextField;
+    private JPanel FrontPagePanel;
     private JButton registerButton;
 
-    public LoginFrame() {
-        initalizeFrame(LoginScreen);
+    public FrontPage(){
+        initalizeFrame(FrontPagePanel);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameTextField.getText();
-                String password = passwordTextField.getPassword().toString();
+                new LoginFrame();
+                setVisible(false);
             }
         });
-
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

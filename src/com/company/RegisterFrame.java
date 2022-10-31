@@ -4,15 +4,21 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-public class LoginFrame extends FrameTemplate {
-
-    public JPanel getLoginScreen() {
-        return LoginScreen;
+public class RegisterFrame extends FrameTemplate{
+    public JPanel getRegisterPanel() {
+        return RegisterPanel;
     }
 
-    public void setLoginScreen(JPanel loginScreen) {
-        LoginScreen = loginScreen;
+    public void setRegisterPanel(JPanel registerPanel) {
+        RegisterPanel = registerPanel;
+    }
+
+    public JPasswordField getPasswordTextField() {
+        return passwordTextField;
+    }
+
+    public void setPasswordTextField(JPasswordField passwordTextField) {
+        this.passwordTextField = passwordTextField;
     }
 
     public JTextField getUsernameTextField() {
@@ -31,14 +37,6 @@ public class LoginFrame extends FrameTemplate {
         this.loginButton = loginButton;
     }
 
-    public JPasswordField getPasswordTextField() {
-        return passwordTextField;
-    }
-
-    public void setPasswordTextField(JPasswordField passwordTextField) {
-        this.passwordTextField = passwordTextField;
-    }
-
     public JButton getRegisterButton() {
         return registerButton;
     }
@@ -55,29 +53,36 @@ public class LoginFrame extends FrameTemplate {
         this.frameLabel = frameLabel;
     }
 
-    private JPanel LoginScreen;
+    private JPanel RegisterPanel;
+    private JPasswordField passwordTextField;
     private JTextField usernameTextField;
     private JButton loginButton;
-    private JPasswordField passwordTextField;
     private JButton registerButton;
     private JLabel frameLabel;
 
-    public LoginFrame() {
-        initalizeFrame(LoginScreen);
+    public RegisterFrame(){
+        initalizeFrame(RegisterPanel);
+        User user = new User();
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameTextField.getText();
-                String password = passwordTextField.getPassword().toString();
-
+                new LoginFrame();
+                setVisible(false);
             }
         });
 
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new RegisterFrame();
-                setVisible(false);
+                if(!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank())) {
+                    user.addUser(usernameTextField.getText(), passwordTextField.getPassword().toString());
+                    JOptionPane.showMessageDialog(RegisterPanel, "Account created");
+                    new LoginFrame();
+                    setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(RegisterPanel,"Username or Password is invalid please try again");
+                }
             }
         });
     }

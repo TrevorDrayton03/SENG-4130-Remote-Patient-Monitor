@@ -7,11 +7,60 @@ import java.awt.event.ActionListener;
 
 public class LoginFrame extends FrameTemplate {
 
+    public JPanel getLoginScreen() {
+        return LoginScreen;
+    }
+
+    public void setLoginScreen(JPanel loginScreen) {
+        LoginScreen = loginScreen;
+    }
+
+    public JTextField getUsernameTextField() {
+        return usernameTextField;
+    }
+
+    public void setUsernameTextField(JTextField usernameTextField) {
+        this.usernameTextField = usernameTextField;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public void setLoginButton(JButton loginButton) {
+        this.loginButton = loginButton;
+    }
+
+    public JPasswordField getPasswordTextField() {
+        return passwordTextField;
+    }
+
+    public void setPasswordTextField(JPasswordField passwordTextField) {
+        this.passwordTextField = passwordTextField;
+    }
+
+    public JButton getRegisterButton() {
+        return registerButton;
+    }
+
+    public void setRegisterButton(JButton registerButton) {
+        this.registerButton = registerButton;
+    }
+
+    public JLabel getFrameLabel() {
+        return frameLabel;
+    }
+
+    public void setFrameLabel(JLabel frameLabel) {
+        this.frameLabel = frameLabel;
+    }
+
     private JPanel LoginScreen;
     private JTextField usernameTextField;
     private JButton loginButton;
     private JPasswordField passwordTextField;
     private JButton registerButton;
+    private JLabel frameLabel;
 
     public LoginFrame() {
         initalizeFrame(LoginScreen);
@@ -20,6 +69,7 @@ public class LoginFrame extends FrameTemplate {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameTextField.getText();
                 String password = passwordTextField.getPassword().toString();
+
             }
         });
 

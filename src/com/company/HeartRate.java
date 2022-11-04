@@ -4,18 +4,23 @@ import java.lang.*;
 
 
 public class HeartRate implements Data {
-    ArrayList<Double> heartRate = new ArrayList<Double>();
+    private static HeartRate heartRate = new HeartRate();
 
+    ArrayList<Double> heartRateData = new ArrayList<Double>();
+    public static HeartRate getInstance() {
+        return heartRate;
+    }
     public HeartRate() {
+        getInstance();
     }
 
     public Iterator<Double> createIterator() {
-        Iterator<Double> iterator = heartRate.iterator();
+        Iterator<Double> iterator = heartRateData.iterator();
         return iterator;
     }
 
     public void add() {
-        heartRate.add(0, getRandomValue(40, 140));
+        heartRateData.add(0, getRandomValue(40, 140));
     }
 
     public void print() {

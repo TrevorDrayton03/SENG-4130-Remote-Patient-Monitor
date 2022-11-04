@@ -5,18 +5,22 @@ import java.lang.*;
 
 
 public class BreathingRate implements Data {
-    ArrayList<Double> breathRate = new ArrayList<Double>();
-
+    private static BreathingRate breathRate = new BreathingRate();
+    ArrayList<Double> breathRateData = new ArrayList<Double>();
+    public static BreathingRate getInstance() {
+        return breathRate;
+    }
     public BreathingRate() {
+        getInstance();
     }
 
     public Iterator<Double> createIterator() {
-        Iterator<Double> iterator = breathRate.iterator();
+        Iterator<Double> iterator = breathRateData.iterator();
         return iterator;
     }
 
     public void add() {
-        breathRate.add(0, getRandomValue(8, 20));
+        breathRateData.add(0, getRandomValue(8, 20));
     }
 
     public void print() {

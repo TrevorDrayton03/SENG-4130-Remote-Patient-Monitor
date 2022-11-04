@@ -4,18 +4,23 @@ import java.lang.*;
 
 
 public class Temperature implements Data {
-    ArrayList<Double> temperature = new ArrayList<Double>();
+    private static Temperature temperature = new Temperature();
+    private ArrayList<Double> tempData = new ArrayList<>();
+    public static Temperature getInstance() {
+        return temperature;
+    }
 
     public Temperature() {
+        getInstance();
     }
 
     public Iterator<Double> createIterator() {
-        Iterator<Double> iterator = temperature.iterator();
+        Iterator<Double> iterator = tempData.iterator();
         return iterator;
     }
 
     public void add() {
-        temperature.add(0, getRandomValue(34, 39));
+        tempData.add(0, getRandomValue(34, 39));
     }
 
     public void print() {

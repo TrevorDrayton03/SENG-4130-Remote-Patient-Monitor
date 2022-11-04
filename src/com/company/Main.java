@@ -9,10 +9,7 @@ public class Main {
         User user = User.getInstance();
         FrontPage frontPage = new FrontPage(user);
         frontPage.initalizeFrame(frontPage.getFrontPagePanel());
-
-        // initialize a timer
         Timer timer = new Timer();
-        // initialize data objects
         HeartRate hr = new HeartRate();
         Temperature temp = new Temperature();
         BreathingRate breathingRate = new BreathingRate();
@@ -25,10 +22,11 @@ public class Main {
                 hr.add();
                 temp.add();
                 breathingRate.add();
+                // javafx properties to add data to the linechart here i think
             }
         }, 1000, 1000);
 
         // launches the line chart sample
-        Application.launch(LineChartSample.class, args);
+        Application.launch(AnimatedLineChart.class, args);
     }
 }

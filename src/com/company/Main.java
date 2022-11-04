@@ -2,8 +2,7 @@ package com.company;
 
 import javax.sound.sampled.Line;
 import java.util.*;
-
-import static javafx.application.Application.launch;
+import javafx.application.Application;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,5 +28,7 @@ public class Main {
             }
         }, 1000, 1000);
 
+        // launches the line chart sample
+        Application.launch(LineChartSample.class, args);
     }
 }

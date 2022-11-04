@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegisterFrame extends FrameTemplate{
+public class RegisterFrame extends FrameTemplate {
     public JPanel getRegisterPanel() {
         return RegisterPanel;
     }
@@ -60,13 +60,12 @@ public class RegisterFrame extends FrameTemplate{
     private JButton registerButton;
     private JLabel frameLabel;
 
-    public RegisterFrame(){
+    public RegisterFrame(User user) {
         initalizeFrame(RegisterPanel);
-        User user = new User();
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginFrame();
+                new LoginFrame(user);
                 setVisible(false);
             }
         });
@@ -74,14 +73,14 @@ public class RegisterFrame extends FrameTemplate{
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank())) {
-                    user.addUser(usernameTextField.getText(), passwordTextField.getPassword().toString());
+                if (!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank())) {
+                    //TODO: check that username is not already taken before making a new user
+                    user.addUser(usernameTextField.getText(), passwordTextField.getText());
                     JOptionPane.showMessageDialog(RegisterPanel, "Account created");
-                    new LoginFrame();
+                    new LoginFrame(user);
                     setVisible(false);
-                }
-                else{
-                    JOptionPane.showMessageDialog(RegisterPanel,"Username or Password is invalid please try again");
+                } else {
+                    JOptionPane.showMessageDialog(RegisterPanel, "Username or Password is invalid please try again");
                 }
             }
         });

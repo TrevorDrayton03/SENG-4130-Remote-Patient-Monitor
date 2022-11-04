@@ -62,21 +62,26 @@ public class LoginFrame extends FrameTemplate {
     private JButton registerButton;
     private JLabel frameLabel;
 
-    public LoginFrame() {
+    public LoginFrame(User user) {
         initalizeFrame(LoginScreen);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = usernameTextField.getText();
-                String password = passwordTextField.getPassword().toString();
+                String password = passwordTextField.getText(); // getPassword().toString() returns a string like as follows: [C@4bf804c2
 
+                boolean isLogin = user.doLogin(username, password);
+
+                if (isLogin) {
+                    System.out.println("You logged in!");
+                }
             }
         });
 
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new RegisterFrame();
+                new RegisterFrame(user);
                 setVisible(false);
             }
         });

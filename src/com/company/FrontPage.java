@@ -4,7 +4,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FrontPage extends FrameTemplate{
+public class FrontPage extends FrameTemplate {
+    private JPanel FrontPagePanel;
+    private JButton registerButton;
+    private JButton loginButton;
+
     public JButton getLoginButton() {
         return loginButton;
     }
@@ -21,8 +25,6 @@ public class FrontPage extends FrameTemplate{
         this.registerButton = registerButton;
     }
 
-    private JButton loginButton;
-
     public JPanel getFrontPagePanel() {
         return FrontPagePanel;
     }
@@ -31,21 +33,18 @@ public class FrontPage extends FrameTemplate{
         FrontPagePanel = frontPagePanel;
     }
 
-    private JPanel FrontPagePanel;
-    private JButton registerButton;
-
-    public FrontPage(){
+    public FrontPage(User user) {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginFrame();
+                new LoginFrame(user);
                 setVisible(false);
             }
         });
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new RegisterFrame();
+                new RegisterFrame(user);
                 setVisible(false);
             }
         });

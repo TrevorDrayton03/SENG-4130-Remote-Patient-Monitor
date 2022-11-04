@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        FrontPage frontPage = new FrontPage();
+        User user = User.getInstance();
+        FrontPage frontPage = new FrontPage(user);
         frontPage.initalizeFrame(frontPage.getFrontPagePanel());
 
         // initialize a timer

@@ -3,11 +3,14 @@ package com.company;
 import javax.swing.*;
 import java.util.HashMap;
 
+//TODO: implement user types
 public class User {
 
     private static User user = new User();
-
+    private String userType;
     private HashMap<String, String> users = new HashMap<>();
+    private String currentUser;
+    private String currentUserType;
 
     /**
      * Singleton method for User object
@@ -65,5 +68,29 @@ public class User {
             JOptionPane.showMessageDialog(null, "Incorrect Username");
         }
         return false;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public String getCurrentUserType() {
+        return currentUserType;
+    }
+
+    public void setCurrentUserType(String currentUserType) {
+        this.currentUserType = currentUserType;
     }
 }

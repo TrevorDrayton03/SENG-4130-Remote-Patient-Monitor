@@ -74,6 +74,8 @@ public class LoginFrame extends FrameTemplate {
 
                 if (isLogin) {
                     System.out.println("You logged in!");
+                    new JFrameDashboard(user);
+                    setVisible(false);
                 }
             }
         });

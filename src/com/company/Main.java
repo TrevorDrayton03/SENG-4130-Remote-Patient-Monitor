@@ -27,7 +27,6 @@ public class Main {
             }
         }, 1000, 1000);
 
-        // launches the line chart sample
-        Application.launch(AnimatedLineChart.class, args);
+        //Application.launch(AnimatedLineChart.class, null);
     }
 }

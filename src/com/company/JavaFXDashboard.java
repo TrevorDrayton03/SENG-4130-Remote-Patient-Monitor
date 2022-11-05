@@ -3,23 +3,23 @@ package com.company;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
+import javafx.scene.layout.FlowPane;
 import javafx.util.Duration;
 
 import java.util.Iterator;
 
-public class AnimatedLineChart extends Application {
-    private LineChart<Number, Number> chart;
-    private XYChart.Series<Number, Number> tempDataSeries;
-    private XYChart.Series<Number, Number> brDataSeries;
-    private XYChart.Series<Number, Number> hrDataSeries;
+public class JavaFXDashboard {
+    public XYChart.Series<Number, Number> tempDataSeries;
+    public XYChart.Series<Number, Number> brDataSeries;
+    public XYChart.Series<Number, Number> hrDataSeries;
+    LineChart<Number, Number> chart;
     private NumberAxis xAxis;
     private Timeline animation;
     private double sequence = 0;
@@ -27,20 +27,27 @@ public class AnimatedLineChart extends Application {
     Temperature temp = Temperature.getInstance();
     HeartRate hr = HeartRate.getInstance();
     BreathingRate br = BreathingRate.getInstance();
+    private static JavaFXDashboard liveDataFeedLineChart = new JavaFXDashboard();
 
-    public AnimatedLineChart() {
+    public static JavaFXDashboard getInstance() {
+        return liveDataFeedLineChart;
+    }
 
+    public JavaFXDashboard() {
         // create timeline to add new data every 60th of second
         animation = new Timeline();
         animation.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
                         (ActionEvent actionEvent) -> plotTime()));
         animation.setCycleCount(Animation.INDEFINITE);
+        Group root = new Group();
+        FlowPane pane = new FlowPane(createLiveDataFeedLineChart(), createLiveDataFeedLineChart());
+        root.getChildren().add(pane);
+        Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
 
-    public Parent createContent() {
-
-        xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS/10);
+    public Parent createLiveDataFeedLineChart() {
+        xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
         final NumberAxis yAxis = new NumberAxis();
         chart = new LineChart<>(xAxis, yAxis);
@@ -66,6 +73,7 @@ public class AnimatedLineChart extends Application {
         chart.getData().add(tempDataSeries);
         chart.getData().add(brDataSeries);
         chart.getData().add(hrDataSeries);
+        chart.setPrefSize(500, 300);
 
         return chart;
     }
@@ -74,12 +82,6 @@ public class AnimatedLineChart extends Application {
         tempDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextTempValue()));
         brDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextBRValue()));
         hrDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextHRValue()));
-
-/*        if (sequence > MAX_DATA_POINTS) {
-            tempDataSeries.getData().remove(0);
-            brDataSeries.getData().remove(0);
-            hrDataSeries.getData().remove(0);
-        }*/
 
         if (sequence > MAX_DATA_POINTS - 1) {
             xAxis.setLowerBound(xAxis.getLowerBound() + 3);
@@ -91,29 +93,22 @@ public class AnimatedLineChart extends Application {
         Iterator tempData = temp.createIterator();
         return (double) tempData.next();
     }
+
     private double getNextBRValue() {
         Iterator brData = br.createIterator();
         return (double) brData.next();
     }
+
     private double getNextHRValue() {
         Iterator hrData = hr.createIterator();
         return (double) hrData.next();
     }
+
     public void play() {
         animation.play();
     }
 
-    @Override
     public void stop() {
         animation.pause();
     }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(createContent()));
-        primaryStage.setTitle("Live Data");
-        primaryStage.show();
-        play();
-    }
-
 }

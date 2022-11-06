@@ -19,9 +19,14 @@ public class JavaFXDashboard {
     public XYChart.Series<Number, Number> tempDataSeries;
     public XYChart.Series<Number, Number> brDataSeries;
     public XYChart.Series<Number, Number> hrDataSeries;
-    LineChart<Number, Number> chart;
-    private NumberAxis xAxis;
-    private Timeline animation;
+    // reusing the same series of data for multiple charts is NOT ok, need a different data series for a different chart (even if they contain the exact same information)
+    public XYChart.Series<Number, Number> tempDataSeries2;
+    public XYChart.Series<Number, Number> brDataSeries2;
+    public XYChart.Series<Number, Number> hrDataSeries2;
+    LineChart<Number, Number> chart; //reusing chart is OK for multiple graphs
+    private NumberAxis xAxis; // reusing axis is OK for multiple graphs
+    private Timeline animation; // need a timeline for each graph to call the function that creates the graph
+    private Timeline animation2;
     private double sequence = 0;
     private final int MAX_DATA_POINTS = 50, MAX = 140, MIN = 5;
     Temperature temp = Temperature.getInstance();
@@ -36,12 +41,17 @@ public class JavaFXDashboard {
     public JavaFXDashboard() {
         // create timeline to add new data every 60th of second
         animation = new Timeline();
+        animation2 = new Timeline();
         animation.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
                         (ActionEvent actionEvent) -> plotTime()));
         animation.setCycleCount(Animation.INDEFINITE);
+        animation2.getKeyFrames()
+                .add(new KeyFrame(Duration.millis(1000),
+                        (ActionEvent actionEvent) -> plotTime2()));
+        animation2.setCycleCount(Animation.INDEFINITE);
         Group root = new Group();
-        FlowPane pane = new FlowPane(createLiveDataFeedLineChart(), createLiveDataFeedLineChart());
+        FlowPane pane = new FlowPane(createLiveDataFeedLineChart(), createLiveDataFeedLineChart2());
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
@@ -77,11 +87,52 @@ public class JavaFXDashboard {
 
         return chart;
     }
+    public Parent createLiveDataFeedLineChart2() {
+        xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
+
+        final NumberAxis yAxis = new NumberAxis();
+        chart = new LineChart<>(xAxis, yAxis);
+
+        // setup chart
+        chart.setAnimated(false);
+        chart.setLegendVisible(false);
+        chart.setTitle("Live Data Feed");
+        xAxis.setLabel("Time");
+        xAxis.setForceZeroInRange(false);
+
+        yAxis.setLabel("");
+        yAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(yAxis, "", null));
+
+        // add starting data
+        tempDataSeries2 = new XYChart.Series<>();
+        brDataSeries2 = new XYChart.Series<>();
+        hrDataSeries2 = new XYChart.Series<>();
+        tempDataSeries2.setName("Temperature");
+        brDataSeries2.setName("Heart Rate");
+        hrDataSeries2.setName("Breathing Rate");
+
+        chart.getData().add(tempDataSeries2);
+        chart.getData().add(brDataSeries2);
+        chart.getData().add(hrDataSeries2);
+        chart.setPrefSize(500, 300);
+
+        return chart;
+    }
 
     private void plotTime() {
         tempDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextTempValue()));
         brDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextBRValue()));
         hrDataSeries.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextHRValue()));
+
+        if (sequence > MAX_DATA_POINTS - 1) {
+            xAxis.setLowerBound(xAxis.getLowerBound() + 3);
+            xAxis.setUpperBound(xAxis.getUpperBound() + 3);
+        }
+    }
+    private void plotTime2() {
+        tempDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextTempValue()));
+        brDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextBRValue()));
+        hrDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextHRValue()));
 
         if (sequence > MAX_DATA_POINTS - 1) {
             xAxis.setLowerBound(xAxis.getLowerBound() + 3);
@@ -106,6 +157,8 @@ public class JavaFXDashboard {
 
     public void play() {
         animation.play();
+        animation2.play();
+
     }
 
     public void stop() {

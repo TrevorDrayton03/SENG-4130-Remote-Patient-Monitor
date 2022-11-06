@@ -73,9 +73,24 @@ public class LoginFrame extends FrameTemplate {
                 boolean isLogin = user.doLogin(username, password);
 
                 if (isLogin) {
-                    System.out.println("You logged in!");
-                    new JFrameDashboard(user);
-                    setVisible(false);
+                    user.setCurrentUser(username);
+                    user.setCurrentUserType(username);
+                    String userType = user.getUserType(username);
+                    if(userType.equals("patient")) {
+                        new JFrameDashboard(user);
+                        setVisible(false);
+                        System.out.println("patient");
+                        dispose();
+                    }
+                    else if (userType.equals("clinician")) {
+                        new JFrameDashboard(user);
+                        System.out.println("clinician");
+                        setVisible(false);
+                        dispose();
+                    }
+                    else {
+                        System.out.println("User type is invalid");
+                    }
                 }
             }
         });

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class User {
 
     private static User user = new User();
-    private String userType;
+    private HashMap<String, String> userType = new HashMap<>();
     private HashMap<String, String> users = new HashMap<>();
     private String currentUser;
     private String currentUserType;
@@ -30,6 +30,8 @@ public class User {
     public User() {
         addUser("trevor", "pw123");
         addUser("sanyam", "pw123");
+        addUserType("trevor", "patient");
+        addUserType("sanyam", "clinician");
         getInstance();
     }
 
@@ -37,8 +39,20 @@ public class User {
         this.users.remove(username);
     }
 
+    public boolean doesUserExist(String username) {
+        if(this.users.containsKey(username)){
+            return true;
+        }
+        return false;
+    }
+
     public void addUser(String username, String password) {
         this.users.put(username, password);
+    }
+
+    public void addUserType(String username, String userType) {
+        System.out.println(userType);
+        this.userType.put(username, userType);
     }
 
     public boolean isCorrectUser(String username) {
@@ -70,14 +84,6 @@ public class User {
         return false;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
     public String getCurrentUser() {
         return currentUser;
     }
@@ -86,8 +92,8 @@ public class User {
         this.currentUser = currentUser;
     }
 
-    public String getCurrentUserType() {
-        return currentUserType;
+    public String getUserType(String username) {
+        return this.userType.get(username);
     }
 
     public void setCurrentUserType(String currentUserType) {

@@ -24,10 +24,12 @@ public class JavaFXDashboard {
     public XYChart.Series<Number, Number> brDataSeries2;
     public XYChart.Series<Number, Number> hrDataSeries2;
     LineChart<Number, Number> chart; //reusing chart is OK for multiple graphs
-    private NumberAxis xAxis; // reusing axis is OK for multiple graphs
-    private Timeline animation; // need a timeline for each graph to call the function that creates the graph
+    private NumberAxis xAxis;
+    private NumberAxis xAxis2;
+    private Timeline animation;
     private Timeline animation2;
     private double sequence = 0;
+    private double sequence2 = 0;
     private final int MAX_DATA_POINTS = 50, MAX = 140, MIN = 5;
     Temperature temp = Temperature.getInstance();
     HeartRate hr = HeartRate.getInstance();
@@ -39,17 +41,17 @@ public class JavaFXDashboard {
     }
 
     public JavaFXDashboard() {
-        // create timeline to add new data every 60th of second
         animation = new Timeline();
-        animation2 = new Timeline();
         animation.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
                         (ActionEvent actionEvent) -> plotTime()));
         animation.setCycleCount(Animation.INDEFINITE);
+        animation2 = new Timeline();
         animation2.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
                         (ActionEvent actionEvent) -> plotTime2()));
         animation2.setCycleCount(Animation.INDEFINITE);
+
         Group root = new Group();
         FlowPane pane = new FlowPane(createLiveDataFeedLineChart(), createLiveDataFeedLineChart2());
         root.getChildren().add(pane);
@@ -88,17 +90,17 @@ public class JavaFXDashboard {
         return chart;
     }
     public Parent createLiveDataFeedLineChart2() {
-        xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
+        xAxis2 = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
         final NumberAxis yAxis = new NumberAxis();
-        chart = new LineChart<>(xAxis, yAxis);
+        chart = new LineChart<>(xAxis2, yAxis);
 
         // setup chart
         chart.setAnimated(false);
         chart.setLegendVisible(false);
         chart.setTitle("Live Data Feed");
-        xAxis.setLabel("Time");
-        xAxis.setForceZeroInRange(false);
+        xAxis2.setLabel("Time");
+        xAxis2.setForceZeroInRange(false);
 
         yAxis.setLabel("");
         yAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(yAxis, "", null));
@@ -130,13 +132,13 @@ public class JavaFXDashboard {
         }
     }
     private void plotTime2() {
-        tempDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextTempValue()));
-        brDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextBRValue()));
-        hrDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence, getNextHRValue()));
+        tempDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextTempValue()));
+        brDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextBRValue()));
+        hrDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextHRValue()));
 
-        if (sequence > MAX_DATA_POINTS - 1) {
-            xAxis.setLowerBound(xAxis.getLowerBound() + 3);
-            xAxis.setUpperBound(xAxis.getUpperBound() + 3);
+        if (sequence2 > MAX_DATA_POINTS - 1) {
+            xAxis2.setLowerBound(xAxis2.getLowerBound() + 3);
+            xAxis2.setUpperBound(xAxis2.getUpperBound() + 3);
         }
     }
 

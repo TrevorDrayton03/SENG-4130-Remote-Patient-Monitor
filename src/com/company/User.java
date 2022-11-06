@@ -51,7 +51,6 @@ public class User {
     }
 
     public void addUserType(String username, String userType) {
-        System.out.println(userType);
         this.userType.put(username, userType);
     }
 

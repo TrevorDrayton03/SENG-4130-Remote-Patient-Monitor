@@ -79,12 +79,10 @@ public class LoginFrame extends FrameTemplate {
                     if(userType.equals("patient")) {
                         new JFrameDashboard(user);
                         setVisible(false);
-                        System.out.println("patient");
                         dispose();
                     }
                     else if (userType.equals("clinician")) {
                         new JFrameDashboard(user);
-                        System.out.println("clinician");
                         setVisible(false);
                         dispose();
                     }

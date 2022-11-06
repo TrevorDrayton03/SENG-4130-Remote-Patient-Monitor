@@ -26,7 +26,5 @@ public class Main {
                 breathingRate.add();
             }
         }, 1000, 1000);
-
-        //Application.launch(AnimatedLineChart.class, null);
     }
 }

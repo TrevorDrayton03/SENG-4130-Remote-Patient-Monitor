@@ -98,6 +98,7 @@ public class LoginFrame extends FrameTemplate {
             public void actionPerformed(ActionEvent e) {
                 new RegisterFrame(user);
                 setVisible(false);
+                dispose();
             }
         });
     }

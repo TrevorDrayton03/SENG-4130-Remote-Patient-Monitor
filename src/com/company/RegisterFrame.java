@@ -90,7 +90,6 @@ public class RegisterFrame extends FrameTemplate {
                 } else if (!(usernameTextField.toString().equals("patient") || usernameTextField.toString().equals("clinician"))) {
                     JOptionPane.showMessageDialog(RegisterPanel, "Valid user types are 'patient' and 'clinician'");
                 } else {
-                    //System.out.println(user.doesUserExist(username))
                     JOptionPane.showMessageDialog(RegisterPanel, "All fields required.");
                 }
             }

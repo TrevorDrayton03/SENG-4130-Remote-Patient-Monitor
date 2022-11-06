@@ -3,7 +3,6 @@ package com.company;
 import javax.swing.*;
 import java.util.HashMap;
 
-//TODO: implement user types
 public class User {
 
     private static User user = new User();

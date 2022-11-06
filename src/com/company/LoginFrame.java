@@ -76,7 +76,7 @@ public class LoginFrame extends FrameTemplate {
                     user.setCurrentUser(username);
                     user.setCurrentUserType(username);
                     String userType = user.getUserType(username);
-                    if(userType.equals("patient")) {
+/*                    if(userType.equals("patient")) {
                         new JFrameDashboard(user);
                         setVisible(false);
                         dispose();
@@ -88,7 +88,12 @@ public class LoginFrame extends FrameTemplate {
                     }
                     else {
                         System.out.println("User type is invalid");
-                    }
+                    }*/
+                    new Lab8(userType);
+                    setVisible(false);
+                    dispose();
+                } else {
+                    System.out.println("User type is invalid");
                 }
             }
         });

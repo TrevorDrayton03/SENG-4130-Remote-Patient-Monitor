@@ -32,6 +32,8 @@ public class JFrameDashboard extends JFrame {
         frame.setLayout(new FlowLayout());
         frame.add(logoutButton);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

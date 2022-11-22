@@ -8,5 +8,6 @@ public abstract class FrameTemplate extends JFrame {
         setSize(300, 300);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 }

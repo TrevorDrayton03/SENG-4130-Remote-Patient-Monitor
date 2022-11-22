@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Duration;
 
@@ -35,6 +38,7 @@ public class JavaFXDashboard {
     HeartRate hr = HeartRate.getInstance();
     BreathingRate br = BreathingRate.getInstance();
     private static JavaFXDashboard liveDataFeedLineChart = new JavaFXDashboard();
+    TableView tableView;
 
     public static JavaFXDashboard getInstance() {
         return liveDataFeedLineChart;
@@ -53,7 +57,7 @@ public class JavaFXDashboard {
         animation2.setCycleCount(Animation.INDEFINITE);
 
         Group root = new Group();
-        FlowPane pane = new FlowPane(createLiveDataFeedLineChart(), createLiveDataFeedLineChart2());
+        FlowPane pane = new FlowPane(createLiveTableDataFeed(), createLiveDataFeedLineChart());
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
@@ -66,7 +70,7 @@ public class JavaFXDashboard {
 
         // setup chart
         chart.setAnimated(false);
-        chart.setLegendVisible(false);
+        chart.setLegendVisible(true);
         chart.setTitle("Live Data Feed");
         xAxis.setLabel("Time");
         xAxis.setForceZeroInRange(false);
@@ -89,36 +93,20 @@ public class JavaFXDashboard {
 
         return chart;
     }
-    public Parent createLiveDataFeedLineChart2() {
-        xAxis2 = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
-        final NumberAxis yAxis = new NumberAxis();
-        chart = new LineChart<>(xAxis2, yAxis);
+    public Parent createLiveTableDataFeed() {
+        tableView = new TableView();
+        TableColumn<DataRow, Double> tempCol = new TableColumn<>("Temperature");
+        TableColumn<DataRow, Double> hrCol = new TableColumn<>("Heart Rate");
+        TableColumn<DataRow, Double> brCol = new TableColumn<>("Breathing Rate");
+        tempCol.setCellValueFactory(new PropertyValueFactory<DataRow,Double>("tempData"));
+        hrCol.setCellValueFactory(new PropertyValueFactory<DataRow,Double>("hrData"));
+        brCol.setCellValueFactory(new PropertyValueFactory<DataRow,Double>("brData"));
+        tableView.getColumns().add(tempCol);
+        tableView.getColumns().add(hrCol);
+        tableView.getColumns().add(brCol);
 
-        // setup chart
-        chart.setAnimated(false);
-        chart.setLegendVisible(false);
-        chart.setTitle("Live Data Feed");
-        xAxis2.setLabel("Time");
-        xAxis2.setForceZeroInRange(false);
-
-        yAxis.setLabel("");
-        yAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(yAxis, "", null));
-
-        // add starting data
-        tempDataSeries2 = new XYChart.Series<>();
-        brDataSeries2 = new XYChart.Series<>();
-        hrDataSeries2 = new XYChart.Series<>();
-        tempDataSeries2.setName("Temperature");
-        brDataSeries2.setName("Heart Rate");
-        hrDataSeries2.setName("Breathing Rate");
-
-        chart.getData().add(tempDataSeries2);
-        chart.getData().add(brDataSeries2);
-        chart.getData().add(hrDataSeries2);
-        chart.setPrefSize(500, 300);
-
-        return chart;
+        return tableView;
     }
 
     private void plotTime() {
@@ -131,15 +119,13 @@ public class JavaFXDashboard {
             xAxis.setUpperBound(xAxis.getUpperBound() + 3);
         }
     }
-    private void plotTime2() {
-        tempDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextTempValue()));
-        brDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextBRValue()));
-        hrDataSeries2.getData().add(new XYChart.Data<Number, Number>(++sequence2, getNextHRValue()));
 
-        if (sequence2 > MAX_DATA_POINTS - 1) {
+    private void plotTime2() {
+        tableView.getItems().add(new DataRow(getNextTempValue(), getNextHRValue(), getNextBRValue()));
+/*        if (sequence2 > MAX_DATA_POINTS - 1) {
             xAxis2.setLowerBound(xAxis2.getLowerBound() + 3);
             xAxis2.setUpperBound(xAxis2.getUpperBound() + 3);
-        }
+        }*/
     }
 
     private double getNextTempValue() {
@@ -160,7 +146,6 @@ public class JavaFXDashboard {
     public void play() {
         animation.play();
         animation2.play();
-
     }
 
     public void stop() {

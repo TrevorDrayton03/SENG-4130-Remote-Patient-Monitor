@@ -10,9 +10,16 @@ import java.awt.event.ActionListener;
 
 public class JFrameDashboard extends JFrame {
     static JButton logoutButton = new JButton("Logout");
-    static JFrame frame = new JFrame("Swing Application");
+    static JFrame frame;
     public JFrameDashboard(User user) {
-        runTheThing();
+        if(user.getUserType(user.getCurrentUser()).equals("clinician")) {
+            frame = new JFrame("Clinician Dashboard");
+            runTheClinicianThing();
+        }
+        else {
+            frame = new JFrame("Patient Dashboard");
+            runThePatientThing();
+        }
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -24,11 +31,11 @@ public class JFrameDashboard extends JFrame {
         });
     }
 
-    public static void initAndShowGUI() {
+    public static void initAndShowClinicianGUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFXPanel jfxPanel = new JFXPanel();
         frame.getContentPane().add(jfxPanel, BorderLayout.CENTER);
-        frame.setSize(800, 800);
+        frame.setSize(1400, 500);
         frame.setLayout(new FlowLayout());
         frame.add(logoutButton);
         frame.setVisible(true);
@@ -37,18 +44,45 @@ public class JFrameDashboard extends JFrame {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                JavaFXDashboard liveDataFeedLineChart = JavaFXDashboard.getInstance();
-                jfxPanel.setScene(liveDataFeedLineChart.chart.getScene());
-                liveDataFeedLineChart.play();
+                ClinicianDashboard dashboard = ClinicianDashboard.getInstance();
+                jfxPanel.setScene(dashboard.chart.getScene());
+                dashboard.play();
+            }
+        });
+    }
+    public static void initAndShowPatientGUI() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFXPanel jfxPanel = new JFXPanel();
+        frame.getContentPane().add(jfxPanel, BorderLayout.CENTER);
+        frame.setSize(1400, 500);
+        frame.setLayout(new FlowLayout());
+        frame.add(logoutButton);
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                PatientDashboard dashboard = PatientDashboard.getInstance();
+                jfxPanel.setScene(dashboard.chart.getScene());
+                dashboard.play();
             }
         });
     }
 
-    public static void runTheThing() {
+    public static void runTheClinicianThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                initAndShowGUI();
+                initAndShowClinicianGUI();
+            }
+        });
+    }
+    public static void runThePatientThing() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                initAndShowPatientGUI();
             }
         });
     }
@@ -60,8 +94,8 @@ public class JFrameDashboard extends JFrame {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        JavaFXDashboard animalLineChart = JavaFXDashboard.getInstance();
-                        //animalLineChart.stop();
+                        //JavaFXDashboard dashboard = JavaFXDashboard.getInstance();
+                        //dashboard.stop();
                         Platform.exit();
                     }
                 });

@@ -165,18 +165,37 @@ public class ClinicianDisplay {
         date = LocalDateTime.now();
         formatTime = time.format(format1);
         formatDate = time.format(format2);
-        tempDataSeries.getData().add(new XYChart.Data<>(++sequence, getNextTempValue()));
-        brDataSeries.getData().add(new XYChart.Data<>(sequence, getNextBRValue()));
-        hrDataSeries.getData().add(new XYChart.Data<>(sequence, getNextHRValue()));
-        tableView.getItems().add(new DataRow(getNextTempValue(), getNextHRValue(), getNextBRValue(), formatTime, formatDate));
-        brLabel.setText("Average Breath Rate: " + getNextAvgBRValue());
-        hrLabel.setText("Average Heart Rate: " + getNextAvgHRValue());
-        tempLabel.setText("Average Temperature: " + getNextAvgTempValue());
+        double tempValue = -1.0;
+        double hrValue = -1.0;
+        double brValue = -1.0;
+        try{
+            tempDataSeries.getData().add(new XYChart.Data<>(++sequence, getNextTempValue()));
+            tempValue = getNextTempValue();
+            tempLabel.setText("Average Temperature: " + getNextAvgTempValue());
+        } catch (Exception e) {
+            System.out.println("Exception at Temperature Data Collection in Patient Display: " + e);
+        }
+        try{
+            brDataSeries.getData().add(new XYChart.Data<>(sequence, getNextBRValue()));
+            brValue = getNextBRValue();
+            brLabel.setText("Average Breath Rate: " + getNextAvgBRValue());
+        } catch (Exception e) {
+            System.out.println("Exception at BR Data Collection in Patient Display: " + e);
+        }
+        try{
+            hrDataSeries.getData().add(new XYChart.Data<>(sequence, getNextHRValue()));
+            hrValue = getNextHRValue();
+            hrLabel.setText("Average Heart Rate: " + getNextAvgHRValue());
+        } catch (Exception e) {
+            System.out.println("Exception at HR Data Collection in Patient Display: " + e);
+        }
+        try{
+            tableView.getItems().add(new DataRow(getNextTempValue(), getNextHRValue(), getNextBRValue(), formatTime, formatDate));
+        } catch (Exception e) {
+            System.out.println("Exception at Table View: " + e);
+        }
         timeLabel.setText("               " +formatDate + " " + formatTime);
         xAxis.setLabel("Time(s)");
-        double tempValue = getNextTempValue();
-        double hrValue = getNextHRValue();
-        double brValue = getNextBRValue();
         if (tempValue > 38.7 || tempValue < 34.3) {
             if (tempValue > 38.7) {
                 listView.getItems().add(0, "Temperature high: " + tempValue + " Celsius at " + formatDate + " " + formatTime);

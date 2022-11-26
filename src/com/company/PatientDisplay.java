@@ -13,21 +13,17 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 
 //TODO: button to send data to doctor or export data to txt/csv file?
 
-public class PatientDashboard {
+public class PatientDisplay {
     public XYChart.Series<Number, Number> tempDataSeries;
     public XYChart.Series<Number, Number> brDataSeries;
     public XYChart.Series<Number, Number> hrDataSeries;
@@ -37,7 +33,7 @@ public class PatientDashboard {
     ListView<String> listView;
     private double sequence = 0;
     private Label timeLabel;
-    private final int MAX_DATA_POINTS = 30, MAX = 140, MIN = 5;
+    private final int MAX_DATA_POINTS = 30;
     Temperature temp = Temperature.getInstance();
     HeartRate hr = HeartRate.getInstance();
     LocalDateTime time = LocalDateTime.now();
@@ -47,13 +43,11 @@ public class PatientDashboard {
     String formatTime = time.format(format1);
     String formatDate = time.format(format2);
     BreathingRate br = BreathingRate.getInstance();
-    private static PatientDashboard liveDataFeedLineChart = new PatientDashboard();
-
-    public static PatientDashboard getInstance() {
-        return liveDataFeedLineChart;
+    private static PatientDisplay patientDisplay = new PatientDisplay();
+    public static PatientDisplay getInstance() {
+        return patientDisplay;
     }
-
-    public PatientDashboard() {
+    public PatientDisplay() {
         animation = new Timeline();
         animation.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
@@ -73,7 +67,6 @@ public class PatientDashboard {
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
-
     public Parent createLiveDataFeedLineChart() {
         xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
@@ -105,7 +98,6 @@ public class PatientDashboard {
 
         return chart;
     }
-
     public Parent createTimeLabel() {
         timeLabel = new Label();
         timeLabel.setText("               " + formatDate + " " + formatTime);
@@ -114,12 +106,10 @@ public class PatientDashboard {
         timeLabel.setLayoutY(125);
         return timeLabel;
     }
-
     public Parent createListViewWarnings() {
         listView = new ListView<String>();
         return listView;
     }
-
     private void plotTime() {
         time = LocalDateTime.now();
         date = LocalDateTime.now();
@@ -158,7 +148,6 @@ public class PatientDashboard {
             xAxis.setUpperBound(xAxis.getUpperBound() + 1);
         }
     }
-
     private double getNextTempValue() {
         Iterator tempData = temp.createIterator();
         Double nextVal = (double) tempData.next();
@@ -167,7 +156,6 @@ public class PatientDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     private double getNextBRValue() {
         Iterator brData = br.createIterator();
         Double nextVal = (double) brData.next();
@@ -176,7 +164,6 @@ public class PatientDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     private double getNextHRValue() {
         Iterator hrData = hr.createIterator();
         Double nextVal = (double) hrData.next();
@@ -185,11 +172,9 @@ public class PatientDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     public void play() {
         animation.play();
     }
-
     public void stop() {
         animation.pause();
     }

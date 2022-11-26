@@ -30,7 +30,6 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
-
     public static void initAndShowClinicianGUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFXPanel jfxPanel = new JFXPanel();
@@ -44,7 +43,7 @@ public class JFrameDashboard extends JFrame {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                ClinicianDashboard dashboard = ClinicianDashboard.getInstance();
+                ClinicianDisplay dashboard = ClinicianDisplay.getInstance();
                 jfxPanel.setScene(dashboard.chart.getScene());
                 dashboard.play();
             }
@@ -54,7 +53,7 @@ public class JFrameDashboard extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFXPanel jfxPanel = new JFXPanel();
         frame.getContentPane().add(jfxPanel, BorderLayout.CENTER);
-        frame.setSize(1400, 500);
+        frame.setSize(1000, 450);
         frame.setLayout(new FlowLayout());
         frame.add(logoutButton);
         frame.setVisible(true);
@@ -63,13 +62,12 @@ public class JFrameDashboard extends JFrame {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                PatientDashboard dashboard = PatientDashboard.getInstance();
+                PatientDisplay dashboard = PatientDisplay.getInstance();
                 jfxPanel.setScene(dashboard.chart.getScene());
                 dashboard.play();
             }
         });
     }
-
     public static void runTheClinicianThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -86,7 +84,6 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
-
     public static void stopRunningTheThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

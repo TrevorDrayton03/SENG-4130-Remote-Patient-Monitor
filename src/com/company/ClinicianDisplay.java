@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 
-public class ClinicianDashboard {
+public class ClinicianDisplay {
     public XYChart.Series<Number, Number> tempDataSeries;
     public XYChart.Series<Number, Number> brDataSeries;
     public XYChart.Series<Number, Number> hrDataSeries;
@@ -38,7 +38,7 @@ public class ClinicianDashboard {
     private Label hrLabel;
     private Label brLabel;
     private Label timeLabel;
-    private final int MAX_DATA_POINTS = 30, MAX = 140, MIN = 5;
+    private final int MAX_DATA_POINTS = 30;
     Temperature temp = Temperature.getInstance();
     HeartRate hr = HeartRate.getInstance();
     LocalDateTime time = java.time.LocalDateTime.now();
@@ -47,17 +47,13 @@ public class ClinicianDashboard {
     DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     String formatTime = time.format(format1);
     String formatDate = time.format(format2);
-
-
     BreathingRate br = BreathingRate.getInstance();
-    private static ClinicianDashboard liveDataFeedLineChart = new ClinicianDashboard();
+    private static ClinicianDisplay clinicianDisplay = new ClinicianDisplay();
     TableView tableView;
-
-    public static ClinicianDashboard getInstance() {
-        return liveDataFeedLineChart;
+    public static ClinicianDisplay getInstance() {
+        return clinicianDisplay;
     }
-
-    public ClinicianDashboard() {
+    public ClinicianDisplay() {
         animation = new Timeline();
         animation.getKeyFrames()
                 .add(new KeyFrame(Duration.millis(1000),
@@ -77,7 +73,6 @@ public class ClinicianDashboard {
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
-
     public Parent createLiveDataFeedLineChart() {
         xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
@@ -109,7 +104,6 @@ public class ClinicianDashboard {
 
         return chart;
     }
-
     public Parent createLiveTableDataFeed() {
         tableView = new TableView();
         TableColumn<DataRow, Double> tempCol = new TableColumn<>("Temperature");
@@ -130,7 +124,6 @@ public class ClinicianDashboard {
 
         return tableView;
     }
-
     public Parent createLiveAverageTempFeed() {
         tempLabel = new Label();
         tempLabel.setText("" + getNextTempValue());
@@ -147,7 +140,6 @@ public class ClinicianDashboard {
         timeLabel.setLayoutY(125);
         return timeLabel;
     }
-
     public Parent createLiveAverageBreathRateFeed() {
         brLabel = new Label();
         brLabel.setText("" + getNextBRValue());
@@ -156,12 +148,10 @@ public class ClinicianDashboard {
         brLabel.setLayoutY(125);
         return brLabel;
     }
-
     public Parent createListViewWarnings() {
         listView = new ListView<String>();
         return listView;
     }
-
     public Parent createLiveAverageHeartRateFeed() {
         hrLabel = new Label();
         hrLabel.setText("" + getNextHRValue());
@@ -170,7 +160,6 @@ public class ClinicianDashboard {
         hrLabel.setLayoutY(125);
         return hrLabel;
     }
-
     private void plotTime() {
         time = LocalDateTime.now();
         date = LocalDateTime.now();
@@ -213,7 +202,6 @@ public class ClinicianDashboard {
             xAxis.setUpperBound(xAxis.getUpperBound() + 1);
         }
     }
-
     private double getNextTempValue() {
         Iterator tempData = temp.createIterator();
         Double nextVal = (double) tempData.next();
@@ -222,7 +210,6 @@ public class ClinicianDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     private double getNextBRValue() {
         Iterator brData = br.createIterator();
         Double nextVal = (double) brData.next();
@@ -231,7 +218,6 @@ public class ClinicianDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     private double getNextHRValue() {
         Iterator hrData = hr.createIterator();
         Double nextVal = (double) hrData.next();
@@ -240,7 +226,6 @@ public class ClinicianDashboard {
         nextVal = nextVal / 100;
         return nextVal;
     }
-
     private double getNextAvgHRValue() {
         Iterator hrData = hr.createIterator();
         double vals = 0.0;
@@ -283,11 +268,9 @@ public class ClinicianDashboard {
         vals = vals / 100;
         return vals;
     }
-
     public void play() {
         animation.play();
     }
-
     public void stop() {
         animation.pause();
     }

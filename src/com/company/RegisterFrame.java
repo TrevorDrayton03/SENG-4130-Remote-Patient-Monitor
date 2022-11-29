@@ -64,7 +64,6 @@ public class RegisterFrame extends FrameTemplate {
             public void actionPerformed(ActionEvent e) {
                 if (!(userTypeTextField.getText().equalsIgnoreCase("patient") || userTypeTextField.getText().equalsIgnoreCase("clinician"))) {
                     JOptionPane.showMessageDialog(RegisterPanel, "Valid user types are 'patient' and 'clinician'");
-                    System.out.println(userTypeTextField.getText());
                 }
                 else if (!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank() || usernameTextField.toString().isBlank() && (user.doesUserExist(usernameTextField.getText())))) {
                     if (user.doesUserExist(usernameTextField.getText())) {

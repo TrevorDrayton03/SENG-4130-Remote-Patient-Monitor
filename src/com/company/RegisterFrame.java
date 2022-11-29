@@ -62,7 +62,11 @@ public class RegisterFrame extends FrameTemplate {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank() || usernameTextField.toString().isBlank() && (user.doesUserExist(usernameTextField.getText())))) {
+                if (!(userTypeTextField.getText().equalsIgnoreCase("patient") || userTypeTextField.getText().equalsIgnoreCase("clinician"))) {
+                    JOptionPane.showMessageDialog(RegisterPanel, "Valid user types are 'patient' and 'clinician'");
+                    System.out.println(userTypeTextField.getText());
+                }
+                else if (!(usernameTextField.getText().isBlank() || passwordTextField.getPassword().toString().isBlank() || usernameTextField.toString().isBlank() && (user.doesUserExist(usernameTextField.getText())))) {
                     if (user.doesUserExist(usernameTextField.getText())) {
                         JOptionPane.showMessageDialog(RegisterPanel, "Username taken.");
                     } else {
@@ -75,8 +79,6 @@ public class RegisterFrame extends FrameTemplate {
                         new LoginFrame(user);
                         setVisible(false);
                     }
-                } else if (!(usernameTextField.toString().equals("patient") || usernameTextField.toString().equals("clinician"))) {
-                    JOptionPane.showMessageDialog(RegisterPanel, "Valid user types are 'patient' and 'clinician'");
                 } else {
                     JOptionPane.showMessageDialog(RegisterPanel, "All fields required.");
                 }

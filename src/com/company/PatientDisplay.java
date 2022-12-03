@@ -47,6 +47,10 @@ public class PatientDisplay {
     public static PatientDisplay getInstance() {
         return patientDisplay;
     }
+
+    /**
+     * Constructor to create the patient scene with the line chart,time and warnings
+     */
     public PatientDisplay() {
         animation = new Timeline();
         animation.getKeyFrames()
@@ -67,6 +71,10 @@ public class PatientDisplay {
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
+
+    /**
+     * Function to create a line chart
+     */
     public Parent createLiveDataFeedLineChart() {
         xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
@@ -98,6 +106,10 @@ public class PatientDisplay {
 
         return chart;
     }
+
+    /**
+     * Function to show the current time
+     */
     public Parent createTimeLabel() {
         timeLabel = new Label();
         timeLabel.setText("               " + formatDate + " " + formatTime);
@@ -106,10 +118,18 @@ public class PatientDisplay {
         timeLabel.setLayoutY(125);
         return timeLabel;
     }
+
+    /**
+     * Function to show all health warnings
+     */
     public Parent createListViewWarnings() {
         listView = new ListView<String>();
         return listView;
     }
+
+    /**
+     * Function to plot the line chart
+     */
     private void plotTime() {
         time = LocalDateTime.now();
         date = LocalDateTime.now();
@@ -164,6 +184,10 @@ public class PatientDisplay {
             xAxis.setUpperBound(xAxis.getUpperBound() + 1);
         }
     }
+
+    /**
+     * @return Iterator pattern to get the next temperature value
+     */
     private double getNextTempValue() {
         Iterator tempData = temp.createIterator();
         Double nextVal = (double) tempData.next();
@@ -172,6 +196,9 @@ public class PatientDisplay {
         nextVal = nextVal / 100;
         return nextVal;
     }
+    /**
+     * @return Iterator pattern to get the next breathing rate value
+     */
     private double getNextBRValue() {
         Iterator brData = br.createIterator();
         Double nextVal = (double) brData.next();
@@ -180,6 +207,9 @@ public class PatientDisplay {
         nextVal = nextVal / 100;
         return nextVal;
     }
+    /**
+     * @return Iterator pattern to get the next Heart Rate value
+     */
     private double getNextHRValue() {
         Iterator hrData = hr.createIterator();
         Double nextVal = (double) hrData.next();

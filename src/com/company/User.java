@@ -39,12 +39,30 @@ public class User {
         }
         return false;
     }
+
+    /**
+     * Add user and their password to Hashmap
+     * @param username
+     * @param password
+     */
     public void addUser(String username, String password) {
         this.users.put(username, password);
     }
+
+    /**
+     * Add user and their usertype to Hashmap
+     * @param username
+     * @param userType
+     */
     public void addUserType(String username, String userType) {
         this.userType.put(username, userType);
     }
+
+    /**
+     *
+     * @param username
+     * @return boolean check if the username is correct or not
+     */
     public boolean isCorrectUser(String username) {
         for (String i : this.users.keySet()) {
             if (i.equals(username)) {
@@ -53,12 +71,26 @@ public class User {
         }
         return false;
     }
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @return boolean check if the password is correct or not
+     */
     public boolean isCorrectPassword(String username, String password) {
         if (users.get(username).equals(password)) {
             return true;
         }
         return false;
     }
+
+    /**
+     * Displays an error if the username or password are wrong
+     * @param username
+     * @param password
+     * @return boolean check if the username and password are correct or not
+     */
     public boolean doLogin(String username, String password) {
         if (user.isCorrectUser(username)) {
             if (user.isCorrectPassword(username, password)) {

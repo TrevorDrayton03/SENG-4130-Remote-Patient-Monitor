@@ -53,6 +53,10 @@ public class ClinicianDisplay {
     public static ClinicianDisplay getInstance() {
         return clinicianDisplay;
     }
+
+    /**
+     * Constructor to create the clinician scene with a line chart, table, list of warnings, current time and averages
+     */
     public ClinicianDisplay() {
         animation = new Timeline();
         animation.getKeyFrames()
@@ -73,6 +77,10 @@ public class ClinicianDisplay {
         root.getChildren().add(pane);
         Scene scene = new Scene(root); // although this shows as not being used, it is required
     }
+
+    /**
+     * Function to create a line chart
+     */
     public Parent createLiveDataFeedLineChart() {
         xAxis = new NumberAxis(0, MAX_DATA_POINTS, MAX_DATA_POINTS / 5);
 
@@ -104,6 +112,10 @@ public class ClinicianDisplay {
 
         return chart;
     }
+
+    /**
+     * Function to create a table with patient data in it
+     */
     public Parent createLiveTableDataFeed() {
         tableView = new TableView();
         TableColumn<DataRow, Double> tempCol = new TableColumn<>("Temperature");
@@ -124,6 +136,10 @@ public class ClinicianDisplay {
 
         return tableView;
     }
+
+    /**
+     * Function to create a display that shows the temperature average
+     */
     public Parent createLiveAverageTempFeed() {
         tempLabel = new Label();
         tempLabel.setText("" + getNextTempValue());
@@ -132,6 +148,10 @@ public class ClinicianDisplay {
         tempLabel.setLayoutY(125);
         return tempLabel;
     }
+
+    /**
+     * Function to create a display to show the current time
+     */
     public Parent createTimeLabel() {
         timeLabel = new Label();
         timeLabel.setText("               " +formatDate + " " + formatTime);
@@ -140,6 +160,10 @@ public class ClinicianDisplay {
         timeLabel.setLayoutY(125);
         return timeLabel;
     }
+
+    /**
+     * Function to create a display that shows the breathing rate average
+     */
     public Parent createLiveAverageBreathRateFeed() {
         brLabel = new Label();
         brLabel.setText("" + getNextBRValue());
@@ -148,10 +172,18 @@ public class ClinicianDisplay {
         brLabel.setLayoutY(125);
         return brLabel;
     }
+
+    /**
+     * A function to create a list with all warnings about the patient
+     */
     public Parent createListViewWarnings() {
         listView = new ListView<String>();
         return listView;
     }
+
+    /**
+     * Function to create a display that shows heart rate average
+     */
     public Parent createLiveAverageHeartRateFeed() {
         hrLabel = new Label();
         hrLabel.setText("" + getNextHRValue());
@@ -160,6 +192,11 @@ public class ClinicianDisplay {
         hrLabel.setLayoutY(125);
         return hrLabel;
     }
+
+    /**
+     * As time goes by update the necessary functions like
+     * warnings and averages of data
+     */
     private void plotTime() {
         time = LocalDateTime.now();
         date = LocalDateTime.now();
@@ -221,6 +258,10 @@ public class ClinicianDisplay {
             xAxis.setUpperBound(xAxis.getUpperBound() + 1);
         }
     }
+
+    /**
+     * @return The next value in the temperature arraylist
+     */
     private double getNextTempValue() {
         Iterator tempData = temp.createIterator();
         Double nextVal = (double) tempData.next();
@@ -229,6 +270,9 @@ public class ClinicianDisplay {
         nextVal = nextVal / 100;
         return nextVal;
     }
+    /**
+     * @return The next value in the breathing rate arraylist
+     */
     private double getNextBRValue() {
         Iterator brData = br.createIterator();
         Double nextVal = (double) brData.next();
@@ -237,6 +281,9 @@ public class ClinicianDisplay {
         nextVal = nextVal / 100;
         return nextVal;
     }
+    /**
+     * @return The next value in the heart rate arraylist
+     */
     private double getNextHRValue() {
         Iterator hrData = hr.createIterator();
         Double nextVal = (double) hrData.next();
@@ -245,6 +292,9 @@ public class ClinicianDisplay {
         nextVal = nextVal / 100;
         return nextVal;
     }
+    /**
+     * @return Calculate the average value for heart rate
+     */
     private double getNextAvgHRValue() {
         Iterator hrData = hr.createIterator();
         double vals = 0.0;
@@ -259,6 +309,9 @@ public class ClinicianDisplay {
         vals = vals / 100;
         return vals;
     }
+    /**
+     * @return Calculate the average value for temperature
+     */
     private double getNextAvgTempValue() {
         Iterator tempData = temp.createIterator();
         double vals = 0.0;
@@ -273,6 +326,9 @@ public class ClinicianDisplay {
         vals = vals / 100;
         return vals;
     }
+    /**
+     * @return Calculate the average value for breathing rate
+     */
     private double getNextAvgBRValue() {
         Iterator brData = br.createIterator();
         double vals = 0.0;

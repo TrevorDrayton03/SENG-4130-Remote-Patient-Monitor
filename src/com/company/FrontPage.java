@@ -26,6 +26,12 @@ public class FrontPage extends FrameTemplate {
     public void setFrontPagePanel(JPanel frontPagePanel) {
         FrontPagePanel = frontPagePanel;
     }
+
+    /**
+     * Constructor for front page frame that has two buttons
+     * Go to either the login or registration pages
+     * @param user
+     */
     public FrontPage(User user) {
         loginButton.addActionListener(new ActionListener() {
             @Override

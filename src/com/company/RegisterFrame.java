@@ -49,6 +49,11 @@ public class RegisterFrame extends FrameTemplate {
     private JLabel frameLabel;
     private JTextField userTypeTextField;
 
+    /**
+     * Register user when they press the register button based on the information they enter in the text fields
+     * Or go to the Login frame when the login button is pressed
+     * @param user
+     */
     public RegisterFrame(User user) {
         initalizeFrame(RegisterPanel);
         loginButton.addActionListener(new ActionListener() {
@@ -58,7 +63,6 @@ public class RegisterFrame extends FrameTemplate {
                 setVisible(false);
             }
         });
-
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

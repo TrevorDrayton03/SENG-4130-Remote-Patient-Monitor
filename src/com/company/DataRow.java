@@ -7,6 +7,14 @@ public class DataRow {
     private Double brData = null;
     private String timeData = null;
     private String dateData = null;
+
+    /**
+     * @param tempDataSeries2
+     * @param hrDataSeries2
+     * @param brDataSeries2
+     * @param timeData
+     * @param dateData
+     */
     public DataRow(Double tempDataSeries2, Double hrDataSeries2, Double brDataSeries2, String timeData, String dateData) {
         this.tempData = tempDataSeries2;
         this.brData = brDataSeries2;

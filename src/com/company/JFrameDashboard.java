@@ -11,6 +11,11 @@ import java.awt.event.ActionListener;
 public class JFrameDashboard extends JFrame {
     static JButton logoutButton = new JButton("Logout");
     static JFrame frame;
+
+    /**
+     * Constructor for when the JFrameDashboard class is called, creates clinician's or patient's dashboard
+     * @param user
+     */
     public JFrameDashboard(User user) {
         if(user.getUserType(user.getCurrentUser()).equals("clinician")) {
             frame = new JFrame("Clinician Dashboard");
@@ -30,6 +35,10 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
+
+    /**
+     * Clinician GUI information and frame creation
+     */
     public static void initAndShowClinicianGUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFXPanel jfxPanel = new JFXPanel();
@@ -49,6 +58,10 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
+
+    /**
+     * Patient GUI information and frame creation
+     */
     public static void initAndShowPatientGUI() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFXPanel jfxPanel = new JFXPanel();
@@ -68,6 +81,10 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
+
+    /**
+     * Function need to run the clinicians dashboard
+     */
     public static void runTheClinicianThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -76,6 +93,10 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
+
+    /**
+     * Function needed to run the patient dashboard
+     */
     public static void runThePatientThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -84,6 +105,10 @@ public class JFrameDashboard extends JFrame {
             }
         });
     }
+
+    /**
+     * Function needed to stop running a GUI dashboard
+     */
     public static void stopRunningTheThing() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -91,8 +116,6 @@ public class JFrameDashboard extends JFrame {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        //JavaFXDashboard dashboard = JavaFXDashboard.getInstance();
-                        //dashboard.stop();
                         Platform.exit();
                     }
                 });

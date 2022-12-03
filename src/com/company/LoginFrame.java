@@ -48,6 +48,12 @@ public class LoginFrame extends FrameTemplate {
     private JPasswordField passwordTextField;
     private JButton registerButton;
     private JLabel frameLabel;
+
+    /**
+     * Login page constructor to allow the user to login if they've entered valid data
+     * or allow them to go to the registration page
+     * @param user
+     */
     public LoginFrame(User user) {
         initalizeFrame(LoginScreen);
         loginButton.addActionListener(new ActionListener() {

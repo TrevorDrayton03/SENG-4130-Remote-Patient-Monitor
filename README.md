@@ -9,6 +9,8 @@ This project is a simulation of a Remote Patient Monitoring application. The app
 
 The app was developed in Android Studio using Java Swing as the front end. The dashboards are JavaFX applications that run on their own thread within the application. The dashboards update in real-time, simulating receiving new patient data, and identify dangerous vital readings for the Doctor. The data on the display is all dynamic; the graphs, charts, tables, etc update every second.
 
+The application implements the template, iterator, and singleton design patterns.
+
 ## Running
 
 1. Download JavaFX and export it

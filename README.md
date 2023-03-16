@@ -1,4 +1,4 @@
-# Remote Patient Monitoring Application
+# Remote Patient Monitoring
 
 ##### Project: SENG4130, Software Design Patterns
 ##### Author: Trevor Drayton, Sanyam Gupta

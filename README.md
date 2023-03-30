@@ -28,11 +28,9 @@ As a patient: user: trevor, password: patient.
 
 Or, register: make a username and password and write clinician or patient as user types.
 
-## Dashboards
+## Health Care Provider Dashboard
 
 ![Clinician Dashboard](https://user-images.githubusercontent.com/56656811/225744869-2254828c-c7c6-4278-b2af-e845524fb51d.png)
-
-![Patient](https://user-images.githubusercontent.com/56656811/225745362-b873e777-7d17-4a1d-bcdf-d86995b8170d.png)
 
 ## Class Diagram
 
